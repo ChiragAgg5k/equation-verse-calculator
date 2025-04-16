@@ -311,13 +311,17 @@ export function ScientificKeypad({
       >
         +/-
       </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("0")} className="text-sm">
+      <CalcButton 
+        variant="number" 
+        onClick={() => debouncedAppendDigit('0')} 
+        className="text-sm"
+      >
         0
       </CalcButton>
       <CalcButton
         variant="number"
         icon={CircleDot}
-        onClick={() => debouncedAppendDigit(".")}
+        onClick={() => debouncedAppendDigit('.')}
         className="text-sm"
       >
         .

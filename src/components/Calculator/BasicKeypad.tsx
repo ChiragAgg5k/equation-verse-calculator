@@ -1,10 +1,8 @@
-
 import React from "react";
 import CalcButton from "./CalcButton";
 import { 
   Plus, Minus, X, Divide, Percent, Equal, 
-  Delete, RotateCcw, PlusSquare, MinusSquare, 
-  RefreshCw, Pause
+  Delete, RefreshCw, PlusSquare, MinusSquare 
 } from "lucide-react";
 import { MemoryOperation } from "@/hooks/useCalculator";
 
@@ -33,7 +31,6 @@ export function BasicKeypad({
   handleMemory,
   memory
 }: BasicKeypadProps) {
-  // Implement a debounce mechanism to prevent multiple clicks
   const debouncedHandleOperation = React.useCallback((operator: string) => {
     handleOperation(operator);
   }, [handleOperation]);
@@ -44,7 +41,6 @@ export function BasicKeypad({
 
   return (
     <div className="grid grid-cols-4 gap-2">
-      {/* Memory functions */}
       <CalcButton 
         variant="memory" 
         onClick={() => handleMemory(MemoryOperation.Clear)}
@@ -74,7 +70,6 @@ export function BasicKeypad({
         M-
       </CalcButton>
 
-      {/* Clear functions */}
       <CalcButton variant="clear" onClick={clearAll}>
         AC
       </CalcButton>
@@ -92,7 +87,6 @@ export function BasicKeypad({
         ÷
       </CalcButton>
 
-      {/* Numbers and operators */}
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('7')}>
         7
       </CalcButton>
@@ -110,7 +104,6 @@ export function BasicKeypad({
         ×
       </CalcButton>
 
-      {/* Similar modifications for other buttons */}
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('4')}>
         4
       </CalcButton>
