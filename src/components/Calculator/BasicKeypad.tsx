@@ -33,9 +33,18 @@ export function BasicKeypad({
   handleMemory,
   memory
 }: BasicKeypadProps) {
+  // Implement a debounce mechanism to prevent multiple clicks
+  const debouncedHandleOperation = React.useCallback((operator: string) => {
+    handleOperation(operator);
+  }, [handleOperation]);
+
+  const debouncedAppendDigit = React.useCallback((digit: string) => {
+    appendDigit(digit);
+  }, [appendDigit]);
+
   return (
     <div className="grid grid-cols-4 gap-2">
-      {/* First row - Memory functions */}
+      {/* Memory functions */}
       <CalcButton 
         variant="memory" 
         onClick={() => handleMemory(MemoryOperation.Clear)}
@@ -65,7 +74,7 @@ export function BasicKeypad({
         M-
       </CalcButton>
 
-      {/* Second row - Clear functions */}
+      {/* Clear functions */}
       <CalcButton variant="clear" onClick={clearAll}>
         AC
       </CalcButton>
@@ -75,67 +84,80 @@ export function BasicKeypad({
       <CalcButton variant="clear" icon={Delete} onClick={handleBackspace}>
         ⌫
       </CalcButton>
-      <CalcButton variant="operator" icon={Divide} onClick={() => handleOperation('/')}>
+      <CalcButton 
+        variant="operator" 
+        icon={Divide} 
+        onClick={() => debouncedHandleOperation('/')}
+      >
         ÷
       </CalcButton>
 
-      {/* Third row - Numbers 7-9 and multiply */}
-      <CalcButton variant="number" onClick={() => appendDigit('7')}>
+      {/* Numbers and operators */}
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('7')}>
         7
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('8')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('8')}>
         8
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('9')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('9')}>
         9
       </CalcButton>
-      <CalcButton variant="operator" icon={X} onClick={() => handleOperation('*')}>
+      <CalcButton 
+        variant="operator" 
+        icon={X} 
+        onClick={() => debouncedHandleOperation('*')}
+      >
         ×
       </CalcButton>
 
-      {/* Fourth row - Numbers 4-6 and subtract */}
-      <CalcButton variant="number" onClick={() => appendDigit('4')}>
+      {/* Similar modifications for other buttons */}
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('4')}>
         4
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('5')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('5')}>
         5
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('6')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('6')}>
         6
       </CalcButton>
-      <CalcButton variant="operator" icon={Minus} onClick={() => handleOperation('-')}>
+      <CalcButton 
+        variant="operator" 
+        icon={Minus} 
+        onClick={() => debouncedHandleOperation('-')}
+      >
         −
       </CalcButton>
 
-      {/* Fifth row - Numbers 1-3 and add */}
-      <CalcButton variant="number" onClick={() => appendDigit('1')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('1')}>
         1
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('2')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('2')}>
         2
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('3')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('3')}>
         3
       </CalcButton>
-      <CalcButton variant="operator" icon={Plus} onClick={() => handleOperation('+')}>
+      <CalcButton 
+        variant="operator" 
+        icon={Plus} 
+        onClick={() => debouncedHandleOperation('+')}
+      >
         +
       </CalcButton>
 
-      {/* Sixth row - Sign toggle, zero, decimal, and equals */}
       <CalcButton variant="function" icon={RefreshCw} onClick={toggleSign}>
         +/-
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('0')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('0')}>
         0
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit('.')}>
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit('.')}>
         .
       </CalcButton>
       <CalcButton variant="equals" icon={Equal} onClick={calculateResult}>
         =
       </CalcButton>
 
-      {/* Extra row for percentage */}
       <CalcButton variant="function" icon={Percent} onClick={handlePercentage} className="col-span-4">
         %
       </CalcButton>

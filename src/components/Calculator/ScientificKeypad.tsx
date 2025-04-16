@@ -1,4 +1,3 @@
-
 import React from "react";
 import CalcButton from "./CalcButton";
 import { 
@@ -47,6 +46,14 @@ export function ScientificKeypad({
   angleMode,
   toggleAngleMode
 }: ScientificKeypadProps) {
+  const debouncedHandleOperation = React.useCallback((operator: string) => {
+    handleOperation(operator);
+  }, [handleOperation]);
+
+  const debouncedAppendDigit = React.useCallback((digit: string) => {
+    appendDigit(digit);
+  }, [appendDigit]);
+
   return (
     <div className="grid grid-cols-6 gap-2">
       {/* Top row - Angle mode and memory functions */}
@@ -128,7 +135,7 @@ export function ScientificKeypad({
       <CalcButton
         variant="operator"
         icon={Divide}
-        onClick={() => handleOperation("/")}
+        onClick={() => debouncedHandleOperation("/")}
         className="text-sm"
       >
         ÷
@@ -137,14 +144,14 @@ export function ScientificKeypad({
       {/* Third row - Parentheses, powers, roots */}
       <CalcButton
         variant="function"
-        onClick={() => appendDigit("(")}
+        onClick={() => debouncedAppendDigit("(")}
         className="text-sm"
       >
         (
       </CalcButton>
       <CalcButton
         variant="function"
-        onClick={() => appendDigit(")")}
+        onClick={() => debouncedAppendDigit(")")}
         className="text-sm"
       >
         )
@@ -168,7 +175,7 @@ export function ScientificKeypad({
       <CalcButton
         variant="function"
         icon={ChevronsUp}
-        onClick={() => handleOperation("^")}
+        onClick={() => debouncedHandleOperation("^")}
         className="text-sm"
       >
         x^y
@@ -176,7 +183,7 @@ export function ScientificKeypad({
       <CalcButton
         variant="operator"
         icon={X}
-        onClick={() => handleOperation("*")}
+        onClick={() => debouncedHandleOperation("*")}
         className="text-sm"
       >
         ×
@@ -197,19 +204,19 @@ export function ScientificKeypad({
       >
         cos
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("7")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("7")} className="text-sm">
         7
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("8")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("8")} className="text-sm">
         8
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("9")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("9")} className="text-sm">
         9
       </CalcButton>
       <CalcButton
         variant="operator"
         icon={Minus}
-        onClick={() => handleOperation("-")}
+        onClick={() => debouncedHandleOperation("-")}
         className="text-sm"
       >
         −
@@ -230,19 +237,19 @@ export function ScientificKeypad({
       >
         sin⁻¹
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("4")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("4")} className="text-sm">
         4
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("5")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("5")} className="text-sm">
         5
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("6")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("6")} className="text-sm">
         6
       </CalcButton>
       <CalcButton
         variant="operator"
         icon={Plus}
-        onClick={() => handleOperation("+")}
+        onClick={() => debouncedHandleOperation("+")}
         className="text-sm"
       >
         +
@@ -263,13 +270,13 @@ export function ScientificKeypad({
       >
         ln
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("1")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("1")} className="text-sm">
         1
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("2")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("2")} className="text-sm">
         2
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("3")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("3")} className="text-sm">
         3
       </CalcButton>
       <CalcButton
@@ -304,13 +311,13 @@ export function ScientificKeypad({
       >
         +/-
       </CalcButton>
-      <CalcButton variant="number" onClick={() => appendDigit("0")} className="text-sm">
+      <CalcButton variant="number" onClick={() => debouncedAppendDigit("0")} className="text-sm">
         0
       </CalcButton>
       <CalcButton
         variant="number"
         icon={CircleDot}
-        onClick={() => appendDigit(".")}
+        onClick={() => debouncedAppendDigit(".")}
         className="text-sm"
       >
         .
