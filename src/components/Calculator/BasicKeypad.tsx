@@ -1,3 +1,4 @@
+
 import React from "react";
 import CalcButton from "./CalcButton";
 import { 
@@ -60,14 +61,14 @@ export function BasicKeypad({
         icon={PlusSquare}
         onClick={() => handleMemory(MemoryOperation.Add)}
       >
-        M+
+        
       </CalcButton>
       <CalcButton 
         variant="memory"
         icon={MinusSquare}
         onClick={() => handleMemory(MemoryOperation.Subtract)}
       >
-        M-
+        
       </CalcButton>
 
       <CalcButton variant="clear" onClick={clearAll}>
@@ -77,14 +78,14 @@ export function BasicKeypad({
         C
       </CalcButton>
       <CalcButton variant="clear" icon={Delete} onClick={handleBackspace}>
-        ⌫
+        
       </CalcButton>
       <CalcButton 
         variant="operator" 
         icon={Divide} 
         onClick={() => debouncedHandleOperation('/')}
       >
-        ÷
+        
       </CalcButton>
 
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('7')}>
@@ -101,7 +102,7 @@ export function BasicKeypad({
         icon={X} 
         onClick={() => debouncedHandleOperation('*')}
       >
-        ×
+        
       </CalcButton>
 
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('4')}>
@@ -118,7 +119,7 @@ export function BasicKeypad({
         icon={Minus} 
         onClick={() => debouncedHandleOperation('-')}
       >
-        −
+        
       </CalcButton>
 
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('1')}>
@@ -135,11 +136,11 @@ export function BasicKeypad({
         icon={Plus} 
         onClick={() => debouncedHandleOperation('+')}
       >
-        +
+        
       </CalcButton>
 
       <CalcButton variant="function" icon={RefreshCw} onClick={toggleSign}>
-        +/-
+        
       </CalcButton>
       <CalcButton variant="number" onClick={() => debouncedAppendDigit('0')}>
         0
@@ -148,11 +149,11 @@ export function BasicKeypad({
         .
       </CalcButton>
       <CalcButton variant="equals" icon={Equal} onClick={calculateResult}>
-        =
+        
       </CalcButton>
 
       <CalcButton variant="function" icon={Percent} onClick={handlePercentage} className="col-span-4">
-        %
+        
       </CalcButton>
     </div>
   );

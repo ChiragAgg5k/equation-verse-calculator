@@ -82,17 +82,19 @@ export function ScientificKeypad({
       </CalcButton>
       <CalcButton
         variant="memory"
+        icon={PlusSquare}
         onClick={() => handleMemory(MemoryOperation.Add)}
         className="text-sm"
       >
-        M+
+        
       </CalcButton>
       <CalcButton
         variant="memory"
+        icon={MinusSquare}
         onClick={() => handleMemory(MemoryOperation.Subtract)}
         className="text-sm"
       >
-        M-
+        
       </CalcButton>
       <CalcButton
         variant="clear"
@@ -100,7 +102,7 @@ export function ScientificKeypad({
         onClick={handleBackspace}
         className="text-sm"
       >
-        ⌫
+        
       </CalcButton>
 
       {/* Second row - Clear, base conversions and basic operators */}
@@ -116,7 +118,7 @@ export function ScientificKeypad({
         icon={Binary}
         className="text-sm"
       >
-        BIN
+        
       </CalcButton>
       <CalcButton
         variant="function"
@@ -138,7 +140,7 @@ export function ScientificKeypad({
         onClick={() => debouncedHandleOperation("/")}
         className="text-sm"
       >
-        ÷
+        
       </CalcButton>
 
       {/* Third row - Parentheses, powers, roots */}
@@ -162,7 +164,7 @@ export function ScientificKeypad({
         onClick={() => handleScientificFunction("x^2")}
         className="text-sm"
       >
-        x²
+        
       </CalcButton>
       <CalcButton
         variant="function"
@@ -170,7 +172,7 @@ export function ScientificKeypad({
         onClick={() => handleScientificFunction("x^3")}
         className="text-sm"
       >
-        x³
+        
       </CalcButton>
       <CalcButton
         variant="function"
@@ -178,7 +180,7 @@ export function ScientificKeypad({
         onClick={() => debouncedHandleOperation("^")}
         className="text-sm"
       >
-        x^y
+        
       </CalcButton>
       <CalcButton
         variant="operator"
@@ -186,7 +188,7 @@ export function ScientificKeypad({
         onClick={() => debouncedHandleOperation("*")}
         className="text-sm"
       >
-        ×
+        
       </CalcButton>
 
       {/* Fourth row - Trig functions and numbers */}
@@ -219,7 +221,7 @@ export function ScientificKeypad({
         onClick={() => debouncedHandleOperation("-")}
         className="text-sm"
       >
-        −
+        
       </CalcButton>
 
       {/* Fifth row - Inverse trig and numbers */}
@@ -252,7 +254,7 @@ export function ScientificKeypad({
         onClick={() => debouncedHandleOperation("+")}
         className="text-sm"
       >
-        +
+        
       </CalcButton>
 
       {/* Sixth row - Logarithms and numbers */}
@@ -294,7 +296,7 @@ export function ScientificKeypad({
         onClick={() => handleConstant("pi")}
         className="text-sm"
       >
-        π
+        
       </CalcButton>
       <CalcButton
         variant="function"
@@ -309,7 +311,7 @@ export function ScientificKeypad({
         onClick={toggleSign}
         className="text-sm"
       >
-        +/-
+        
       </CalcButton>
       <CalcButton 
         variant="number" 
@@ -320,7 +322,6 @@ export function ScientificKeypad({
       </CalcButton>
       <CalcButton
         variant="number"
-        icon={CircleDot}
         onClick={() => debouncedAppendDigit('.')}
         className="text-sm"
       >
@@ -332,7 +333,7 @@ export function ScientificKeypad({
         onClick={calculateResult}
         className="text-sm"
       >
-        =
+        
       </CalcButton>
 
       {/* Bottom row - Additional functions */}
@@ -370,7 +371,7 @@ export function ScientificKeypad({
         onClick={handlePercentage}
         className="text-sm"
       >
-        %
+        
       </CalcButton>
       <CalcButton
         variant="function"

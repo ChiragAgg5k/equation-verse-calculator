@@ -54,8 +54,9 @@ export function CalcButton({
         className
       )}
     >
-      {Icon ? <Icon className="mr-1" size={18} /> : null}
-      {children}
+      {Icon ? 
+        <Icon className="size-5" size={18} /> : 
+        children}
     </button>
   );
 }
