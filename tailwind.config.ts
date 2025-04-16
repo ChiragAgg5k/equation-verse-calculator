@@ -52,6 +52,22 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				calculator: {
+					display: 'hsl(var(--calculator-display))',
+					'display-text': 'hsl(var(--calculator-display-text))',
+					operator: 'hsl(var(--calculator-operator))',
+					'operator-text': 'hsl(var(--calculator-operator-text))',
+					number: 'hsl(var(--calculator-number))',
+					'number-text': 'hsl(var(--calculator-number-text))',
+					function: 'hsl(var(--calculator-function))',
+					'function-text': 'hsl(var(--calculator-function-text))',
+					memory: 'hsl(var(--calculator-memory))',
+					'memory-text': 'hsl(var(--calculator-memory-text))',
+					equals: 'hsl(var(--calculator-equals))',
+					'equals-text': 'hsl(var(--calculator-equals-text))',
+					clear: 'hsl(var(--calculator-clear))',
+					'clear-text': 'hsl(var(--calculator-clear-text))',
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +100,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'button-press': {
+					'0%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(0.95)' },
+					'100%': { transform: 'scale(1)' }
+				},
+				'mode-transition': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'slide-up': {
+					'0%': { transform: 'translateY(10px)', opacity: '0' },
+					'100%': { transform: 'translateY(0)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'button-press': 'button-press 0.1s ease-in-out',
+				'mode-transition': 'mode-transition 0.3s ease-out',
+				'fade-in': 'fade-in 0.2s ease-out',
+				'slide-up': 'slide-up 0.3s ease-out'
 			}
 		}
 	},
