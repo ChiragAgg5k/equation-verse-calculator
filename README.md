@@ -87,19 +87,3 @@ src/
 └── utils/
     └── mathOperations.ts
 ```
-
-## 🔒 License
-
-[Your License - e.g., MIT]
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📞 Contact
-
-[Your Contact Information]
-
----
-
-**Built with ❤️ by [Your Name/Organization]**
