@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
 
-## Project info
+# EquationVerse Calculator 🧮✨
 
-**URL**: https://lovable.dev/projects/89a41dff-67b4-41b9-b717-783a46075585
+## Overview
 
-## How can I edit this code?
+EquationVerse is a powerful, feature-rich calculator application built with modern web technologies. It offers both basic and scientific calculation modes, providing a seamless and intuitive mathematical computing experience.
 
-There are several ways of editing your application.
+## 🚀 Features
 
-**Use Lovable**
+### Calculator Modes
+- **Basic Mode**: Perform standard arithmetic operations
+- **Scientific Mode**: Advanced calculations with trigonometric, logarithmic, and exponential functions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/89a41dff-67b4-41b9-b717-783a46075585) and start prompting.
+### Key Functionalities
+- Memory operations (M+, M-, MR, MC)
+- Percentage calculations
+- Sign toggling
+- Keyboard shortcut support
+- Calculation history
+- Theme switching (Light/Dark modes)
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠 Technologies Used
 
-**Use your preferred IDE**
+- **Frontend**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Custom React hooks
+- **Icons**: Lucide React
+- **Build Tool**: Vite
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🔧 Getting Started
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- Node.js (v18+)
+- npm or Bun
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repository
+git clone <your-repo-url>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Navigate to project directory
+cd equation-verse-calculator
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 🌈 Usage
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Basic Operations
+- Addition, subtraction, multiplication, division
+- Percentage calculations
+- Memory function recalls
 
-**Use GitHub Codespaces**
+### Scientific Functions
+- Trigonometric calculations (sin, cos, tan)
+- Logarithmic functions
+- Exponential operations
+- Angle mode switching (DEG, RAD, GRAD)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Themes
 
-## What technologies are used for this project?
+The calculator supports both light and dark themes, providing a comfortable viewing experience in different environments.
 
-This project is built with:
+## 🤖 Keyboard Shortcuts
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `Esc`: Clear all
+- Numeric keys: Input numbers
+- `+`, `-`, `*`, `/`: Perform operations
+- `Enter`: Calculate result
 
-## How can I deploy this project?
+## 📦 Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/89a41dff-67b4-41b9-b717-783a46075585) and click on Share -> Publish.
+```
+src/
+├── components/
+│   └── Calculator/
+│       ├── BasicKeypad.tsx
+│       ├── ScientificKeypad.tsx
+│       └── Calculator.tsx
+├── hooks/
+│   └── useCalculator.ts
+└── utils/
+    └── mathOperations.ts
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 🔒 License
 
-Yes, you can!
+[Your License - e.g., MIT]
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🤝 Contributing
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Contact
+
+[Your Contact Information]
+
+---
+
+**Built with ❤️ by [Your Name/Organization]**
