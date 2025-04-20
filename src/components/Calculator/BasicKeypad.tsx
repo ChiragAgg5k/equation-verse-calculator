@@ -55,6 +55,7 @@ export function BasicKeypad({
 
   return (
     <div className="grid grid-cols-4 gap-2">
+      {/* Memory buttons */}
       <CalcButton
         variant="memory"
         onClick={() => handleMemory(MemoryOperation.Clear)}
@@ -73,13 +74,18 @@ export function BasicKeypad({
         variant="memory"
         icon={PlusSquare}
         onClick={() => handleMemory(MemoryOperation.Add)}
-      ></CalcButton>
+      >
+        M+
+      </CalcButton>
       <CalcButton
         variant="memory"
         icon={MinusSquare}
         onClick={() => handleMemory(MemoryOperation.Subtract)}
-      ></CalcButton>
+      >
+        M-
+      </CalcButton>
 
+      {/* Clear buttons */}
       <CalcButton variant="clear" onClick={clearAll}>
         AC
       </CalcButton>
@@ -90,13 +96,18 @@ export function BasicKeypad({
         variant="clear"
         icon={Delete}
         onClick={handleBackspace}
-      ></CalcButton>
+      >
+        Del
+      </CalcButton>
       <CalcButton
         variant="operator"
         icon={Divide}
         onClick={() => debouncedHandleOperation("/")}
-      ></CalcButton>
+      >
+        ÷
+      </CalcButton>
 
+      {/* Number buttons */}
       <CalcButton variant="number" onClick={() => debouncedAppendDigit("7")}>
         7
       </CalcButton>
@@ -110,7 +121,9 @@ export function BasicKeypad({
         variant="operator"
         icon={X}
         onClick={() => debouncedHandleOperation("*")}
-      ></CalcButton>
+      >
+        ×
+      </CalcButton>
 
       <CalcButton variant="number" onClick={() => debouncedAppendDigit("4")}>
         4
@@ -125,7 +138,9 @@ export function BasicKeypad({
         variant="operator"
         icon={Minus}
         onClick={() => debouncedHandleOperation("-")}
-      ></CalcButton>
+      >
+        −
+      </CalcButton>
 
       <CalcButton variant="number" onClick={() => debouncedAppendDigit("1")}>
         1
@@ -140,13 +155,18 @@ export function BasicKeypad({
         variant="operator"
         icon={Plus}
         onClick={() => debouncedHandleOperation("+")}
-      ></CalcButton>
+      >
+        +
+      </CalcButton>
 
+      {/* Bottom row modified */}
       <CalcButton
         variant="function"
         icon={RefreshCw}
         onClick={toggleSign}
-      ></CalcButton>
+      >
+        ±
+      </CalcButton>
       <CalcButton variant="number" onClick={() => debouncedAppendDigit("0")}>
         0
       </CalcButton>
@@ -157,14 +177,19 @@ export function BasicKeypad({
         variant="equals"
         icon={Equal}
         onClick={calculateResult}
-      ></CalcButton>
+        className="col-span-4 row-span-1"
+      >
+        =
+      </CalcButton>
 
       <CalcButton
         variant="function"
         icon={Percent}
         onClick={handlePercentage}
         className="col-span-4"
-      ></CalcButton>
+      >
+        %
+      </CalcButton>
     </div>
   );
 }

@@ -75,7 +75,7 @@ export function ScientificKeypad({
 
   return (
     <div className="grid grid-cols-6 gap-2">
-      {/* Top row - Angle mode and memory functions */}
+      {/* First row - Angle mode and memory functions */}
       <CalcButton
         variant="toggle"
         onClick={toggleAngleMode}
@@ -104,21 +104,27 @@ export function ScientificKeypad({
         icon={PlusSquare}
         onClick={() => handleMemory(MemoryOperation.Add)}
         className="text-sm"
-      ></CalcButton>
+      >
+        M+
+      </CalcButton>
       <CalcButton
         variant="memory"
         icon={MinusSquare}
         onClick={() => handleMemory(MemoryOperation.Subtract)}
         className="text-sm"
-      ></CalcButton>
+      >
+        M-
+      </CalcButton>
       <CalcButton
         variant="clear"
         icon={Delete}
         onClick={handleBackspace}
         className="text-sm"
-      ></CalcButton>
+      >
+        Del
+      </CalcButton>
 
-      {/* Second row - Clear, base conversions and basic operators */}
+      {/* Clear and base conversion row */}
       <CalcButton variant="clear" onClick={clearAll} className="text-sm">
         AC
       </CalcButton>
@@ -130,27 +136,31 @@ export function ScientificKeypad({
         onClick={() => handleBaseConversion("bin")}
         icon={Binary}
         className="text-sm"
-      ></CalcButton>
+      >
+        Bin
+      </CalcButton>
       <CalcButton
         variant="function"
         onClick={() => handleBaseConversion("oct")}
         className="text-sm"
       >
-        OCT
+        Oct
       </CalcButton>
       <CalcButton
         variant="function"
         onClick={() => handleBaseConversion("hex")}
         className="text-sm"
       >
-        HEX
+        Hex
       </CalcButton>
       <CalcButton
         variant="operator"
         icon={Divide}
         onClick={() => debouncedHandleOperation("/")}
         className="text-sm"
-      ></CalcButton>
+      >
+        ÷
+      </CalcButton>
 
       {/* Third row - Parentheses, powers, roots */}
       <CalcButton
@@ -356,13 +366,15 @@ export function ScientificKeypad({
       >
         .
       </CalcButton>
+      {/* Modify equals button to span the entire bottom row */}
       <CalcButton
         variant="equals"
         icon={Equal}
         onClick={calculateResult}
-        className="text-sm"
-      ></CalcButton>
-
+        className="col-span-6 row-span-1 text-sm"
+      >
+        =
+      </CalcButton>
       {/* Bottom row - Additional functions */}
       <CalcButton
         variant="function"
