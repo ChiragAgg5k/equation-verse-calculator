@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
 import * as math from "@/utils/mathOperations";
+import { useCallback, useEffect, useState } from "react";
 
 // Define the available calculator modes
 export enum CalculatorMode {
@@ -45,10 +45,12 @@ export function useCalculator() {
       if (savedHistory) {
         const parsedHistory = JSON.parse(savedHistory);
         // Convert string timestamps back to Date objects
-        const formattedHistory = parsedHistory.map((item: any) => ({
-          ...item,
-          timestamp: new Date(item.timestamp),
-        }));
+        const formattedHistory = parsedHistory.map(
+          (item: Omit<HistoryItem, "timestamp"> & { timestamp: string }) => ({
+            ...item,
+            timestamp: new Date(item.timestamp),
+          }),
+        );
         setHistory(formattedHistory);
       }
     } catch (error) {

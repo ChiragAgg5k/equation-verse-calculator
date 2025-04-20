@@ -1,18 +1,19 @@
+import { MemoryOperation } from "@/hooks/useCalculator";
+import {
+  Delete,
+  Divide,
+  Equal,
+  LucideIcon,
+  Minus,
+  MinusSquare,
+  Percent,
+  Plus,
+  PlusSquare,
+  RefreshCw,
+  X,
+} from "lucide-react";
 import React from "react";
 import CalcButton from "./CalcButton";
-import {
-  Plus,
-  Minus,
-  X,
-  Divide,
-  Percent,
-  Equal,
-  Delete,
-  RefreshCw,
-  PlusSquare,
-  MinusSquare,
-} from "lucide-react";
-import { MemoryOperation } from "@/hooks/useCalculator";
 
 interface BasicKeypadProps {
   appendDigit: (digit: string) => void;
@@ -25,6 +26,15 @@ interface BasicKeypadProps {
   toggleSign: () => void;
   handleMemory: (operation: MemoryOperation) => void;
   memory: number;
+}
+
+interface ButtonConfig {
+  label: string;
+  variant: "memory" | "clear" | "operator" | "number" | "function" | "equals";
+  icon?: LucideIcon;
+  onClick: () => void;
+  disabled?: boolean;
+  className?: string;
 }
 
 export function BasicKeypad({
@@ -40,156 +50,203 @@ export function BasicKeypad({
   memory,
 }: BasicKeypadProps) {
   const debouncedHandleOperation = React.useCallback(
-    (operator: string) => {
-      handleOperation(operator);
-    },
+    (operator: string) => handleOperation(operator),
     [handleOperation],
   );
 
   const debouncedAppendDigit = React.useCallback(
-    (digit: string) => {
-      appendDigit(digit);
-    },
+    (digit: string) => appendDigit(digit),
     [appendDigit],
+  );
+
+  // Memory row configuration
+  const memoryButtons: ButtonConfig[] = [
+    {
+      label: "MC",
+      variant: "memory",
+      onClick: () => handleMemory(MemoryOperation.Clear),
+      disabled: memory === 0,
+    },
+    {
+      label: "MR",
+      variant: "memory",
+      onClick: () => handleMemory(MemoryOperation.Recall),
+      disabled: memory === 0,
+    },
+    {
+      label: "M+",
+      variant: "memory",
+      icon: PlusSquare,
+      onClick: () => handleMemory(MemoryOperation.Add),
+    },
+    {
+      label: "M-",
+      variant: "memory",
+      icon: MinusSquare,
+      onClick: () => handleMemory(MemoryOperation.Subtract),
+    },
+  ];
+
+  // Clear row configuration
+  const clearButtons: ButtonConfig[] = [
+    {
+      label: "AC",
+      variant: "clear",
+      onClick: clearAll,
+    },
+    {
+      label: "C",
+      variant: "clear",
+      onClick: clearDisplay,
+    },
+    {
+      label: "Del",
+      variant: "clear",
+      icon: Delete,
+      onClick: handleBackspace,
+    },
+    {
+      label: "÷",
+      variant: "operator",
+      icon: Divide,
+      onClick: () => debouncedHandleOperation("/"),
+    },
+  ];
+
+  // Number pad configuration with operators
+  const numberPadConfig: ButtonConfig[][] = [
+    [
+      {
+        label: "7",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("7"),
+      },
+      {
+        label: "8",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("8"),
+      },
+      {
+        label: "9",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("9"),
+      },
+      {
+        label: "×",
+        variant: "operator",
+        icon: X,
+        onClick: () => debouncedHandleOperation("*"),
+      },
+    ],
+    [
+      {
+        label: "4",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("4"),
+      },
+      {
+        label: "5",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("5"),
+      },
+      {
+        label: "6",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("6"),
+      },
+      {
+        label: "−",
+        variant: "operator",
+        icon: Minus,
+        onClick: () => debouncedHandleOperation("-"),
+      },
+    ],
+    [
+      {
+        label: "1",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("1"),
+      },
+      {
+        label: "2",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("2"),
+      },
+      {
+        label: "3",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("3"),
+      },
+      {
+        label: "+",
+        variant: "operator",
+        icon: Plus,
+        onClick: () => debouncedHandleOperation("+"),
+      },
+    ],
+  ];
+
+  // Bottom rows configuration
+  const bottomButtons: ButtonConfig[][] = [
+    [
+      { label: "±", variant: "function", icon: RefreshCw, onClick: toggleSign },
+      {
+        label: "0",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("0"),
+      },
+      {
+        label: ".",
+        variant: "number",
+        onClick: () => debouncedAppendDigit("."),
+      },
+      { label: "=", variant: "equals", icon: Equal, onClick: calculateResult },
+    ],
+    [
+      {
+        label: "%",
+        variant: "function",
+        icon: Percent,
+        onClick: handlePercentage,
+        className: "col-span-4",
+      },
+    ],
+  ];
+
+  const renderButton = (config: ButtonConfig) => (
+    <CalcButton
+      key={config.label}
+      variant={config.variant}
+      icon={config.icon}
+      onClick={config.onClick}
+      disabled={config.disabled}
+      className={config.className}
+    >
+      {config.label}
+    </CalcButton>
   );
 
   return (
     <div className="grid grid-cols-4 gap-2">
       {/* Memory buttons */}
-      <CalcButton
-        variant="memory"
-        onClick={() => handleMemory(MemoryOperation.Clear)}
-        disabled={memory === 0}
-      >
-        MC
-      </CalcButton>
-      <CalcButton
-        variant="memory"
-        onClick={() => handleMemory(MemoryOperation.Recall)}
-        disabled={memory === 0}
-      >
-        MR
-      </CalcButton>
-      <CalcButton
-        variant="memory"
-        icon={PlusSquare}
-        onClick={() => handleMemory(MemoryOperation.Add)}
-      >
-        M+
-      </CalcButton>
-      <CalcButton
-        variant="memory"
-        icon={MinusSquare}
-        onClick={() => handleMemory(MemoryOperation.Subtract)}
-      >
-        M-
-      </CalcButton>
+      {memoryButtons.map(renderButton)}
 
       {/* Clear buttons */}
-      <CalcButton variant="clear" onClick={clearAll}>
-        AC
-      </CalcButton>
-      <CalcButton variant="clear" onClick={clearDisplay}>
-        C
-      </CalcButton>
-      <CalcButton
-        variant="clear"
-        icon={Delete}
-        onClick={handleBackspace}
-      >
-        Del
-      </CalcButton>
-      <CalcButton
-        variant="operator"
-        icon={Divide}
-        onClick={() => debouncedHandleOperation("/")}
-      >
-        ÷
-      </CalcButton>
+      {clearButtons.map(renderButton)}
 
-      {/* Number buttons */}
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("7")}>
-        7
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("8")}>
-        8
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("9")}>
-        9
-      </CalcButton>
-      <CalcButton
-        variant="operator"
-        icon={X}
-        onClick={() => debouncedHandleOperation("*")}
-      >
-        ×
-      </CalcButton>
+      {/* Number pad with operators */}
+      {numberPadConfig.map((row, i) => (
+        <React.Fragment key={`number-row-${i}`}>
+          {row.map(renderButton)}
+        </React.Fragment>
+      ))}
 
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("4")}>
-        4
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("5")}>
-        5
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("6")}>
-        6
-      </CalcButton>
-      <CalcButton
-        variant="operator"
-        icon={Minus}
-        onClick={() => debouncedHandleOperation("-")}
-      >
-        −
-      </CalcButton>
-
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("1")}>
-        1
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("2")}>
-        2
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("3")}>
-        3
-      </CalcButton>
-      <CalcButton
-        variant="operator"
-        icon={Plus}
-        onClick={() => debouncedHandleOperation("+")}
-      >
-        +
-      </CalcButton>
-
-      {/* Bottom row modified */}
-      <CalcButton
-        variant="function"
-        icon={RefreshCw}
-        onClick={toggleSign}
-      >
-        ±
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit("0")}>
-        0
-      </CalcButton>
-      <CalcButton variant="number" onClick={() => debouncedAppendDigit(".")}>
-        .
-      </CalcButton>
-      <CalcButton
-        variant="equals"
-        icon={Equal}
-        onClick={calculateResult}
-        className="col-span-4 row-span-1"
-      >
-        =
-      </CalcButton>
-
-      <CalcButton
-        variant="function"
-        icon={Percent}
-        onClick={handlePercentage}
-        className="col-span-4"
-      >
-        %
-      </CalcButton>
+      {/* Bottom rows */}
+      {bottomButtons.map((row, i) => (
+        <React.Fragment key={`bottom-row-${i}`}>
+          {row.map(renderButton)}
+        </React.Fragment>
+      ))}
     </div>
   );
 }

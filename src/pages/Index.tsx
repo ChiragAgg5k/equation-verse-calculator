@@ -8,9 +8,6 @@ const Index = () => {
         <div className="w-full max-w-xl">
           <Calculator />
         </div>
-        <footer className="mt-8 text-center text-sm text-muted-foreground">
-          <p>EquationVerse Calculator © {new Date().getFullYear()}</p>
-        </footer>
       </div>
     </ThemeProvider>
   );

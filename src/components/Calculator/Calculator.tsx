@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { useCalculator, CalculatorMode } from "@/hooks/useCalculator";
-import Display from "./Display";
-import BasicKeypad from "./BasicKeypad";
-import ScientificKeypad from "./ScientificKeypad";
-import History from "./History";
-import ThemeToggle from "../ThemeToggle";
+import { CalculatorMode, useCalculator } from "@/hooks/useCalculator";
+import { cn } from "@/lib/utils";
 import {
   Calculator as CalculatorIcon,
   ChevronDown,
   ChevronUp,
   Clock,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useState } from "react";
+import ThemeToggle from "../ThemeToggle";
+import BasicKeypad from "./BasicKeypad";
+import Display from "./Display";
+import History from "./History";
+import ScientificKeypad from "./ScientificKeypad";
 
 export function Calculator() {
   const calculator = useCalculator();
@@ -30,14 +30,14 @@ export function Calculator() {
           </h1>
         </div>
         <div className="flex space-x-2">
+          <ThemeToggle />
           <button
             onClick={() => setHistoryVisible(!historyVisible)}
-            className="p-2 rounded-full bg-calculator-number hover:bg-calculator-number/90 transition-colors text-calculator-number-text"
+            className="p-3 rounded-full bg-calculator-number hover:bg-calculator-number/90 transition-colors text-calculator-number-text"
             aria-label="Toggle history"
           >
             <Clock size={18} />
           </button>
-          <ThemeToggle />
         </div>
       </div>
 
@@ -53,7 +53,11 @@ export function Calculator() {
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out mb-4",
-          historyVisible ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0",
+          historyVisible
+            ? calculator.history.length > 0
+              ? "h-[300px] opacity-100"
+              : "h-[103px] opacity-100"
+            : "h-0 opacity-0",
         )}
       >
         <History
@@ -115,11 +119,6 @@ export function Calculator() {
             toggleAngleMode={calculator.toggleAngleMode}
           />
         )}
-      </div>
-
-      {/* Footer with keyboard shortcut hints */}
-      <div className="mt-4 text-center text-xs text-muted-foreground">
-        <p>Keyboard shortcuts available. Press Esc to clear.</p>
       </div>
     </div>
   );
