@@ -1,7 +1,6 @@
-
 // Utility functions for precise decimal calculations
 // Using Decimal.js library to avoid floating-point errors
-import Decimal from 'decimal.js';
+import Decimal from "decimal.js";
 
 // Helper for parsing calculation input
 export function parseInput(input: string): number {
@@ -47,7 +46,9 @@ export function divide(a: number, b: number): number {
 
 // Calculate percentage
 export function percentage(value: number, percent: number): number {
-  return new Decimal(value).times(new Decimal(percent).dividedBy(100)).toNumber();
+  return new Decimal(value)
+    .times(new Decimal(percent).dividedBy(100))
+    .toNumber();
 }
 
 // Calculate square root
@@ -88,7 +89,7 @@ export function factorial(n: number): number {
 export enum AngleMode {
   DEG = "DEG",
   RAD = "RAD",
-  GRAD = "GRAD"
+  GRAD = "GRAD",
 }
 
 // Convert angle to radians based on mode
@@ -220,7 +221,9 @@ export function acosh(value: number): number {
 // Inverse hyperbolic tangent
 export function atanh(value: number): number {
   if (value <= -1 || value >= 1) {
-    throw new Error("Inverse hyperbolic tangent input must be between -1 and 1");
+    throw new Error(
+      "Inverse hyperbolic tangent input must be between -1 and 1",
+    );
   }
   return Math.atanh(value);
 }
@@ -276,17 +279,20 @@ export function fromHexadecimal(hex: string): number {
 // Format number with thousand separators and proper scientific notation
 export function formatNumber(value: number | Decimal): string {
   const decimalValue = value instanceof Decimal ? value : new Decimal(value);
-  
+
   // Check if scientific notation is needed
-  if (decimalValue.abs().gte(1e10) || (decimalValue.abs().lt(1e-7) && !decimalValue.isZero())) {
+  if (
+    decimalValue.abs().gte(1e10) ||
+    (decimalValue.abs().lt(1e-7) && !decimalValue.isZero())
+  ) {
     return decimalValue.toExponential(10);
   }
-  
+
   // Format with thousand separators
   const valueStr = decimalValue.toString();
-  const parts = valueStr.split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  return parts.join('.');
+  const parts = valueStr.split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 }
 
 // Mathematical constants
@@ -298,5 +304,5 @@ export const CONSTANTS = {
   ELECTRON_MASS: 9.1093837015e-31,
   PLANCK: 6.62607015e-34,
   SPEED_OF_LIGHT: 299792458,
-  GRAVITY: 9.80665
+  GRAVITY: 9.80665,
 };

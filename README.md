@@ -1,4 +1,3 @@
-
 # EquationVerse Calculator 🧮✨
 
 ## Overview
@@ -8,10 +7,12 @@ EquationVerse is a powerful, feature-rich calculator application built with mode
 ## 🚀 Features
 
 ### Calculator Modes
+
 - **Basic Mode**: Perform standard arithmetic operations
 - **Scientific Mode**: Advanced calculations with trigonometric, logarithmic, and exponential functions
 
 ### Key Functionalities
+
 - Memory operations (M+, M-, MR, MC)
 - Percentage calculations
 - Sign toggling
@@ -30,6 +31,7 @@ EquationVerse is a powerful, feature-rich calculator application built with mode
 ## 🔧 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18+)
 - npm or Bun
 
@@ -52,11 +54,13 @@ npm run dev
 ## 🌈 Usage
 
 ### Basic Operations
+
 - Addition, subtraction, multiplication, division
 - Percentage calculations
 - Memory function recalls
 
 ### Scientific Functions
+
 - Trigonometric calculations (sin, cos, tan)
 - Logarithmic functions
 - Exponential operations

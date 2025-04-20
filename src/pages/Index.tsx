@@ -1,4 +1,3 @@
-
 import { Calculator } from "@/components/Calculator/Calculator";
 import { ThemeProvider } from "next-themes";
 

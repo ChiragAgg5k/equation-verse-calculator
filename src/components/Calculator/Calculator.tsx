@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useCalculator, CalculatorMode } from "@/hooks/useCalculator";
 import Display from "./Display";
@@ -6,7 +5,12 @@ import BasicKeypad from "./BasicKeypad";
 import ScientificKeypad from "./ScientificKeypad";
 import History from "./History";
 import ThemeToggle from "../ThemeToggle";
-import { Calculator as CalculatorIcon, ChevronDown, ChevronUp, Clock } from "lucide-react";
+import {
+  Calculator as CalculatorIcon,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Calculator() {
@@ -20,7 +24,9 @@ export function Calculator() {
         <div className="flex items-center">
           <CalculatorIcon className="mr-2 h-5 w-5 text-primary" />
           <h1 className="text-lg font-bold text-foreground">
-            {calculator.mode === CalculatorMode.Basic ? "Basic Calculator" : "Scientific Calculator"}
+            {calculator.mode === CalculatorMode.Basic
+              ? "Basic Calculator"
+              : "Scientific Calculator"}
           </h1>
         </div>
         <div className="flex space-x-2">
@@ -47,7 +53,7 @@ export function Calculator() {
       <div
         className={cn(
           "overflow-hidden transition-all duration-300 ease-in-out mb-4",
-          historyVisible ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+          historyVisible ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0",
         )}
       >
         <History

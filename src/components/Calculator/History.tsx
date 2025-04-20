@@ -1,4 +1,3 @@
-
 import React from "react";
 import { HistoryItem } from "@/hooks/useCalculator";
 import { Trash2 } from "lucide-react";
@@ -11,20 +10,26 @@ interface HistoryProps {
   clearHistory: () => void;
 }
 
-export function History({ history, recallFromHistory, clearHistory }: HistoryProps) {
+export function History({
+  history,
+  recallFromHistory,
+  clearHistory,
+}: HistoryProps) {
   // Format the date for display
   const formatDate = (date: Date): string => {
-    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
   };
 
   return (
     <div className="w-full bg-calculator-display rounded-lg p-3 shadow-inner max-h-[300px] flex flex-col">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-calculator-display-text font-medium">Calculation History</h3>
+        <h3 className="text-calculator-display-text font-medium">
+          Calculation History
+        </h3>
         {history.length > 0 && (
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={clearHistory}
             className="text-calculator-display-text/50 hover:text-destructive hover:bg-transparent"
           >
@@ -32,7 +37,7 @@ export function History({ history, recallFromHistory, clearHistory }: HistoryPro
           </Button>
         )}
       </div>
-      
+
       <ScrollArea className="flex-1">
         {history.length === 0 ? (
           <div className="text-calculator-display-text/50 text-center py-4 italic text-sm">
